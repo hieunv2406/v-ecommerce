@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    command:
+      - --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: db_learn
+      MYSQL_USER: hieunv
+      MYSQL_PASSWORD: 1
+      MYSQL_ROOT_PASSWORD: 1
+    ports:
+      - 3306:3306
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:
