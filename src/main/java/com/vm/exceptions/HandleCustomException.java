@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
-/**
- * @author TuLa
- */
-
 @RestControllerAdvice
 public class HandleCustomException {
     private static final Logger log = LogManager.getLogger(HandleCustomException.class);
@@ -48,13 +44,13 @@ public class HandleCustomException {
     @ExceptionHandler(UserNotFoundException.class)
     private ResponseEntity<ResultDto> handleUserNotFoundException(UserNotFoundException userNotFoundException) {
         ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, userNotFoundException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ResultDto> handleProductNotFoundException(ProductNotFoundException productNotFoundException) {
         ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, productNotFoundException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvoiceItemInValidException.class)
@@ -69,15 +65,15 @@ public class HandleCustomException {
         return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(CategoryInvalidException.class)
-    public ResponseEntity<ResultDto> handleCategoryInvalidException(CategoryInvalidException categoryInvalidException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, categoryInvalidException.getMessage());
+    @ExceptionHandler(CustomInvalidException.class)
+    public ResponseEntity<ResultDto> handleCustomInvalidException(CustomInvalidException customInvalidException) {
+        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, customInvalidException.getMessage());
         return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(CategoryNotFoundException.class)
-    public ResponseEntity<ResultDto> handleCategoryNotFoundException(CategoryNotFoundException categoryNotFoundException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, categoryNotFoundException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(CustomNotFoundException.class)
+    public ResponseEntity<ResultDto> handleCustomInvalidException(CustomNotFoundException customNotFoundException) {
+        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, customNotFoundException.getMessage());
+        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
     }
 }

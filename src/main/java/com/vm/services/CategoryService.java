@@ -1,15 +1,16 @@
 package com.vm.services;
 
 import com.vm.dto.CategoryRequest;
+import com.vm.dto.ResultDto;
 import com.vm.entities.Category;
-import com.vm.exceptions.CategoryNotFoundException;
+import com.vm.exceptions.CustomNotFoundException;
 
 import java.util.List;
 
 public interface CategoryService {
-    Category save(CategoryRequest categoryRequest);
-    Category edit(Long id, CategoryRequest categoryRequest) throws CategoryNotFoundException;
-    Category findCategoryById(Long id) throws CategoryNotFoundException;
+    ResultDto save(CategoryRequest categoryRequest);
+    ResultDto edit(Long id, CategoryRequest categoryRequest) throws CustomNotFoundException;
+    Category findCategoryById(Long id) throws CustomNotFoundException;
     List<Category> getAllCategory();
-    void deleteCategoryById(Long id) throws CategoryNotFoundException;
+    ResultDto deleteCategoryById(Long id) throws CustomNotFoundException;
 }

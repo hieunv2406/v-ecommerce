@@ -1,13 +1,15 @@
 package com.vm.controller;
 
 import com.vm.dto.CategoryRequest;
+import com.vm.dto.ResultDto;
 import com.vm.entities.Category;
-import com.vm.exceptions.CategoryNotFoundException;
+import com.vm.exceptions.CustomNotFoundException;
 import com.vm.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,27 +26,28 @@ public class CategoryController {
         List<Category> categoryList = categoryService.getAllCategory();
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
+
     @PostMapping(value = "/add")
-    public ResponseEntity<Category> addCategory(@RequestBody CategoryRequest categoryRequest) {
-        Category category = categoryService.save(categoryRequest);
-        return new ResponseEntity<>(category, HttpStatus.OK);
+    public ResponseEntity<ResultDto> addCategory(@Valid @RequestBody CategoryRequest categoryRequest) {
+        ResultDto resultDto = categoryService.save(categoryRequest);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Category> eiditCategoryById(@PathVariable Long id, @RequestBody CategoryRequest categoryRequest)  throws CategoryNotFoundException {
-        Category category = categoryService.edit(id, categoryRequest);
-        return new ResponseEntity<>(category, HttpStatus.OK);
+    public ResponseEntity<ResultDto> editCategoryById(@Valid @PathVariable Long id, @RequestBody CategoryRequest categoryRequest) throws CustomNotFoundException {
+        ResultDto resultDto = categoryService.edit(id, categoryRequest);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) throws CategoryNotFoundException {
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) throws CustomNotFoundException {
         Category category = categoryService.findCategoryById(id);
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Object> deleteCategoryById(@PathVariable Long id) throws CategoryNotFoundException {
-        categoryService.deleteCategoryById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<ResultDto> deleteCategoryById(@PathVariable Long id) throws CustomNotFoundException {
+        ResultDto resultDto = categoryService.deleteCategoryById(id);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }
 }
