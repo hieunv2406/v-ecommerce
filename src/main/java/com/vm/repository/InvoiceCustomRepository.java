@@ -1,8 +1,8 @@
-package com.vm.repository.hibernates;
+package com.vm.repository;
 
 import com.vm.dto.Datatable;
 import com.vm.dto.InvoiceRequest;
 
-public interface InvoiceRepo {
+public interface InvoiceCustomRepository {
     Datatable getListInvoicePage(InvoiceRequest invoiceRequest);
 }

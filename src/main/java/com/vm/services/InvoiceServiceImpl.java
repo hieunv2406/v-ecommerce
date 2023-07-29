@@ -8,9 +8,9 @@ import com.vm.entities.InvoiceItem;
 import com.vm.entities.User;
 import com.vm.exceptions.InvoiceItemInValidException;
 import com.vm.exceptions.UserNotFoundException;
+import com.vm.repository.InvoiceCustomRepository;
 import com.vm.repository.InvoiceRepository;
 import com.vm.repository.UserRepository;
-import com.vm.repository.hibernates.InvoiceRepo;
 import com.vm.utils.AuthUtil;
 import com.vm.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private InvoiceRepo invoiceRepo;
+    private InvoiceCustomRepository invoiceCustomRepository;
 
     @Override
     public ResultDto createInvoice(InvoiceRequest invoiceRequest) throws Exception {
@@ -65,6 +65,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Datatable getListInvoicePage(InvoiceRequest invoiceRequest) {
-        return invoiceRepo.getListInvoicePage(invoiceRequest);
+        return invoiceCustomRepository.getListInvoicePage(invoiceRequest);
     }
 }

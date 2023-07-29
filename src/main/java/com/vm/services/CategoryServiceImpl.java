@@ -1,9 +1,12 @@
 package com.vm.services;
 
-import com.vm.dto.CategoryRequest;
+import com.vm.dto.Datatable;
 import com.vm.dto.ResultDto;
+import com.vm.dto.category.CategoryRequest;
+import com.vm.dto.category.CategorySearchRequest;
 import com.vm.entities.Category;
 import com.vm.exceptions.CustomNotFoundException;
+import com.vm.repository.CategoryCustomRepository;
 import com.vm.repository.CategoryRepository;
 import com.vm.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +19,14 @@ import java.util.Optional;
 @Slf4j
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
+    private final CategoryCustomRepository categoryCustomRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryCustomRepository categoryCustomRepository) {
         this.categoryRepository = categoryRepository;
+        this.categoryCustomRepository = categoryCustomRepository;
     }
+
+    private static final String CATEGORY_NOT_FOUND = "Category not found";
 
     @Override
     public ResultDto save(CategoryRequest categoryRequest) {
@@ -36,8 +43,8 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("Edit category by id: {}", id);
         Optional<Category> category = categoryRepository.findByCategoryId(id);
         if (!category.isPresent()) {
-            log.error("Category not found");
-            throw new CustomNotFoundException("Category not found");
+            log.error(CATEGORY_NOT_FOUND);
+            throw new CustomNotFoundException(CATEGORY_NOT_FOUND);
         }
         Category categoryModified = category.get();
         categoryModified.setCategoryName(categoryRequest.getCategoryName());
@@ -51,8 +58,8 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("Find category by id: {}", id);
         Optional<Category> category = categoryRepository.findByCategoryId(id);
         if (!category.isPresent()) {
-            log.error("Category not found");
-            throw new CustomNotFoundException("Category not found");
+            log.error(CATEGORY_NOT_FOUND);
+            throw new CustomNotFoundException(CATEGORY_NOT_FOUND);
         }
         return category.get();
     }
@@ -68,10 +75,16 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("Delete category by id: {}", id);
         Optional<Category> category = categoryRepository.findByCategoryId(id);
         if (!category.isPresent()) {
-            log.error("Category not found");
-            throw new CustomNotFoundException("Category not found");
+            log.error(CATEGORY_NOT_FOUND);
+            throw new CustomNotFoundException(CATEGORY_NOT_FOUND);
         }
         categoryRepository.delete(category.get());
         return new ResultDto(Constants.ResponseKey.SUCCESS, "Category deleted");
+    }
+
+    @Override
+    public Datatable search(CategorySearchRequest categorySearchRequest) {
+        log.info("Search category");
+        return categoryCustomRepository.getCategoriesPage(categorySearchRequest);
     }
 }

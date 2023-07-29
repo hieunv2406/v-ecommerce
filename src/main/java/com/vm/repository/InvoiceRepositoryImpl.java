@@ -1,28 +1,27 @@
-package com.vm.repository.hibernates;
+package com.vm.repository;
 
-import com.vm.dto.BaseDto;
 import com.vm.dto.Datatable;
 import com.vm.dto.InvoiceDto;
 import com.vm.dto.InvoiceRequest;
-import com.vm.repository.BaseRepository;
+import com.vm.dto.PageDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class InvoiceRepositoryImpl extends BaseRepository implements InvoiceRepo {
+public class InvoiceRepositoryImpl extends BaseRepository implements InvoiceCustomRepository {
     @Override
     public Datatable getListInvoicePage(InvoiceRequest invoiceRequest) {
-        BaseDto baseDTO = sqlSearch(invoiceRequest);
-        return getListDataTableBySqlQuery(baseDTO.getSqlQuery(),
-                baseDTO.getParameters(), invoiceRequest.getPage(), invoiceRequest.getPageSize(),
+        PageDto pageDTO = sqlSearch(invoiceRequest);
+        return getListDataTableBySqlQuery(pageDTO.getSqlQuery(),
+                pageDTO.getParameters(), invoiceRequest.getPage(), invoiceRequest.getPageSize(),
                 InvoiceDto.class,
                 invoiceRequest.getSortName(), invoiceRequest.getSortType());
     }
 
-    private BaseDto sqlSearch(InvoiceRequest invoiceRequest) {
-        BaseDto baseDTO = new BaseDto();
+    private PageDto sqlSearch(InvoiceRequest invoiceRequest) {
+        PageDto pageDTO = new PageDto();
         Map<String, Object> parameter = new HashMap<>();
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT\n" +
@@ -31,10 +30,10 @@ public class InvoiceRepositoryImpl extends BaseRepository implements InvoiceRepo
                 "i.status status,\n" +
                 "i.note note,\n" +
                 "i.created_by createdBy,\n" +
-                "i.created_date createdDate,\n" +
+                "i.created_at createdAt,\n" +
                 "i.updated_by updatedBy,\n" +
-                "i.updated_date ,\n" +
-                "i.user_id \n" +
+                "i.updated_date updateAt,\n" +
+                "i.user_id userId\n" +
                 "FROM invoice i\n" +
                 "WHERE 1 = 1 ");
         if (invoiceRequest != null) {
@@ -44,8 +43,8 @@ public class InvoiceRepositoryImpl extends BaseRepository implements InvoiceRepo
             }
         }
         sql.append(" ORDER BY i.invoice_id ASC ");
-        baseDTO.setSqlQuery(sql.toString());
-        baseDTO.setParameters(parameter);
-        return baseDTO;
+        pageDTO.setSqlQuery(sql.toString());
+        pageDTO.setParameters(parameter);
+        return pageDTO;
     }
 }

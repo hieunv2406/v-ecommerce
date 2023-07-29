@@ -1,7 +1,9 @@
 package com.vm.controller;
 
-import com.vm.dto.CategoryRequest;
+import com.vm.dto.Datatable;
 import com.vm.dto.ResultDto;
+import com.vm.dto.category.CategoryRequest;
+import com.vm.dto.category.CategorySearchRequest;
 import com.vm.entities.Category;
 import com.vm.exceptions.CustomNotFoundException;
 import com.vm.services.CategoryService;
@@ -49,5 +51,11 @@ public class CategoryController {
     public ResponseEntity<ResultDto> deleteCategoryById(@PathVariable Long id) throws CustomNotFoundException {
         ResultDto resultDto = categoryService.deleteCategoryById(id);
         return new ResponseEntity<>(resultDto, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/search")
+    public ResponseEntity<Datatable> search(@RequestBody CategorySearchRequest categorySearchRequest) {
+        Datatable datatable = categoryService.search(categorySearchRequest);
+        return new ResponseEntity<>(datatable, HttpStatus.OK);
     }
 }
