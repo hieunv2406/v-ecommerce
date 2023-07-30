@@ -1,6 +1,7 @@
-package com.vm.dto;
+package com.vm.dto.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vm.dto.user.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

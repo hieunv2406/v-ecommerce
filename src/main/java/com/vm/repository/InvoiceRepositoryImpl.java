@@ -1,8 +1,8 @@
 package com.vm.repository;
 
 import com.vm.dto.Datatable;
-import com.vm.dto.InvoiceDto;
-import com.vm.dto.InvoiceRequest;
+import com.vm.dto.invoice.InvoiceDto;
+import com.vm.dto.invoice.InvoiceRequest;
 import com.vm.dto.PageDto;
 import org.springframework.stereotype.Repository;
 

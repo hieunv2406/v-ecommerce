@@ -1,9 +1,8 @@
 package com.vm.controller;
 
 import com.vm.dto.ResultDto;
-import com.vm.dto.UserDto;
-import com.vm.entities.User;
-import com.vm.exceptions.UserNotFoundException;
+import com.vm.dto.user.UserDto;
+import com.vm.exceptions.CustomException;
 import com.vm.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/edit")
-    public ResponseEntity<ResultDto> editUser(@RequestBody UserDto userDto) throws UserNotFoundException {
+    public ResponseEntity<ResultDto> editUser(@RequestBody UserDto userDto) throws CustomException {
         ResultDto resultDto = userService.editUser(userDto);
         return new ResponseEntity<>(new ResultDto(), HttpStatus.OK);
     }

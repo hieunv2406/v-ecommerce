@@ -1,7 +1,7 @@
 package com.vm.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.vm.dto.UserRolesDto;
+import com.vm.dto.user.UserRolesDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

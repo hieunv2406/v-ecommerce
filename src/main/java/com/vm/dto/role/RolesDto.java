@@ -1,4 +1,4 @@
-package com.vm.dto;
+package com.vm.dto.role;
 
 import com.vm.entities.Role;
 import lombok.AllArgsConstructor;

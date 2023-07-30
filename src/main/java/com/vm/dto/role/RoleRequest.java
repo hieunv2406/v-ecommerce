@@ -1,4 +1,4 @@
-package com.vm.adminsite.data.dto;
+package com.vm.dto.role;
 
 import lombok.Data;
 
@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class RoleRequest {
 
-    @NotEmpty(message = "{validation.role.code.notnull}")
+    @NotEmpty
     private String code;
-    @NotEmpty(message = "{validation.role.name.notnull}")
+    @NotEmpty
     private String name;
     private String description;
 

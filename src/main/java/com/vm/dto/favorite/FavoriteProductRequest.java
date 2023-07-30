@@ -1,4 +1,4 @@
-package com.vm.dto;
+package com.vm.dto.favorite;
 
 import lombok.Data;
 

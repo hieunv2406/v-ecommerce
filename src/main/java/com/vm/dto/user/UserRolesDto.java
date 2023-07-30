@@ -1,4 +1,4 @@
-package com.vm.dto;
+package com.vm.dto.user;
 
 import com.vm.entities.Role;
 import com.vm.entities.User;

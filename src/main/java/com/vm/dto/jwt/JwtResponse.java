@@ -1,4 +1,4 @@
-package com.vm.dto;
+package com.vm.dto.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

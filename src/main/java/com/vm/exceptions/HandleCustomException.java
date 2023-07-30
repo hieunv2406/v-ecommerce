@@ -41,39 +41,15 @@ public class HandleCustomException {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    private ResponseEntity<ResultDto> handleUserNotFoundException(UserNotFoundException userNotFoundException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, userNotFoundException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ResultDto> handleProductNotFoundException(ProductNotFoundException productNotFoundException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, productNotFoundException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(InvoiceItemInValidException.class)
-    public ResponseEntity<ResultDto> handleInvoiceItemInValidException(InvoiceItemInValidException invoiceItemInValidException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, invoiceItemInValidException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(RoleExistedException.class)
-    public ResponseEntity<ResultDto> handleRoleExistedException(RoleExistedException roleExistedException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, roleExistedException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(CustomInvalidException.class)
-    public ResponseEntity<ResultDto> handleCustomInvalidException(CustomInvalidException customInvalidException) {
-        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, customInvalidException.getMessage());
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<ResultDto> handleCustomException(CustomException customException) {
+        ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, customException.getMessage());
         return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(CustomNotFoundException.class)
-    public ResponseEntity<ResultDto> handleCustomInvalidException(CustomNotFoundException customNotFoundException) {
+    public ResponseEntity<ResultDto> handleCustomNotFoundException(CustomNotFoundException customNotFoundException) {
         ResultDto resultDto = new ResultDto(Constants.ResponseKey.ERROR, customNotFoundException.getMessage());
-        return new ResponseEntity<>(resultDto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(resultDto, HttpStatus.NOT_FOUND);
     }
 }

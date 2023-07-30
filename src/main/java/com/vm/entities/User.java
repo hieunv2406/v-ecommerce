@@ -1,7 +1,7 @@
 package com.vm.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.vm.dto.UserDto;
+import com.vm.dto.user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

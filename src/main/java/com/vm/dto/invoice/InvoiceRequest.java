@@ -1,5 +1,6 @@
-package com.vm.dto;
+package com.vm.dto.invoice;
 
+import com.vm.dto.PageDto;
 import com.vm.entities.InvoiceItem;
 import lombok.Data;
 

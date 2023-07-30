@@ -1,7 +1,7 @@
 package com.vm.controller;
 
 import com.vm.dto.Datatable;
-import com.vm.dto.InvoiceRequest;
+import com.vm.dto.invoice.InvoiceRequest;
 import com.vm.dto.ResultDto;
 import com.vm.services.InvoiceService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,9 @@
 package com.vm.controller;
 
-import com.vm.dto.FavoriteProductRequest;
+import com.vm.dto.favorite.FavoriteProductRequest;
 import com.vm.dto.ResultDto;
 import com.vm.entities.FavoriteProduct;
-import com.vm.exceptions.UserNotFoundException;
+import com.vm.exceptions.CustomException;
 import com.vm.services.FavoriteProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class FavoriteProductController {
     }
 
     @GetMapping(path = "/list")
-    public ResponseEntity<Page<FavoriteProduct>> getListFavoriteProduct(Pageable pageable) throws UserNotFoundException {
+    public ResponseEntity<Page<FavoriteProduct>> getListFavoriteProduct(Pageable pageable) throws CustomException {
         log.info("get list favorite product");
         return new ResponseEntity<>(favoriteProductService.getListFavoriteProduct(pageable), HttpStatus.OK);
     }

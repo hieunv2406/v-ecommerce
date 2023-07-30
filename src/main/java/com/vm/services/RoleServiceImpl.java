@@ -1,9 +1,9 @@
-package com.vm.adminsite.services;
+package com.vm.services;
 
-import com.vm.adminsite.data.dto.RoleRequest;
+import com.vm.dto.role.RoleRequest;
 import com.vm.dto.ResultDto;
 import com.vm.entities.Role;
-import com.vm.exceptions.RoleExistedException;
+import com.vm.exceptions.CustomException;
 import com.vm.repository.RoleRepository;
 import com.vm.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Override
-    public ResultDto createNewRole(RoleRequest roleRequest) throws RoleExistedException {
+    public ResultDto save(RoleRequest roleRequest) throws CustomException {
         Optional<Role> roleChecking = roleRepository.findByCode(roleRequest.getCode());
         if (roleChecking.isPresent()) {
-            throw new RoleExistedException("Role existed");
+            throw new CustomException("Role Already Exists");
         }
         Role role = new Role();
         role.setCode(roleRequest.getCode());
@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> getListRole() {
+    public List<Role> findAll() {
         return roleRepository.findAll();
     }
 }

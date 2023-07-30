@@ -2,6 +2,10 @@ package com.vm.authentication.controller;
 
 import com.vm.authentication.security.JwtAuthenticationProvider;
 import com.vm.dto.*;
+import com.vm.dto.jwt.JwtRequest;
+import com.vm.dto.jwt.JwtResponse;
+import com.vm.dto.jwt.JwtUserDetails;
+import com.vm.dto.user.UserRequest;
 import com.vm.entities.Role;
 import com.vm.entities.User;
 import com.vm.entities.UserRole;

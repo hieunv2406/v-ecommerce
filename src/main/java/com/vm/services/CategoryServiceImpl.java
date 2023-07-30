@@ -5,7 +5,7 @@ import com.vm.dto.ResultDto;
 import com.vm.dto.category.CategoryRequest;
 import com.vm.dto.category.CategorySearchRequest;
 import com.vm.entities.Category;
-import com.vm.exceptions.CustomNotFoundException;
+import com.vm.exceptions.CustomException;
 import com.vm.repository.CategoryCustomRepository;
 import com.vm.repository.CategoryRepository;
 import com.vm.utils.Constants;
@@ -39,12 +39,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResultDto edit(Long id, CategoryRequest categoryRequest) throws CustomNotFoundException {
+    public ResultDto edit(Long id, CategoryRequest categoryRequest) throws CustomException {
         log.info("Edit category by id: {}", id);
         Optional<Category> category = categoryRepository.findByCategoryId(id);
         if (!category.isPresent()) {
             log.error(CATEGORY_NOT_FOUND);
-            throw new CustomNotFoundException(CATEGORY_NOT_FOUND);
+            throw new CustomException(CATEGORY_NOT_FOUND);
         }
         Category categoryModified = category.get();
         categoryModified.setCategoryName(categoryRequest.getCategoryName());
@@ -54,12 +54,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category findCategoryById(Long id) throws CustomNotFoundException {
+    public Category findCategoryById(Long id) throws CustomException {
         log.info("Find category by id: {}", id);
         Optional<Category> category = categoryRepository.findByCategoryId(id);
         if (!category.isPresent()) {
             log.error(CATEGORY_NOT_FOUND);
-            throw new CustomNotFoundException(CATEGORY_NOT_FOUND);
+            throw new CustomException(CATEGORY_NOT_FOUND);
         }
         return category.get();
     }
@@ -71,12 +71,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResultDto deleteCategoryById(Long id) throws CustomNotFoundException {
+    public ResultDto deleteCategoryById(Long id) throws CustomException {
         log.info("Delete category by id: {}", id);
         Optional<Category> category = categoryRepository.findByCategoryId(id);
         if (!category.isPresent()) {
             log.error(CATEGORY_NOT_FOUND);
-            throw new CustomNotFoundException(CATEGORY_NOT_FOUND);
+            throw new CustomException(CATEGORY_NOT_FOUND);
         }
         categoryRepository.delete(category.get());
         return new ResultDto(Constants.ResponseKey.SUCCESS, "Category deleted");

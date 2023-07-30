@@ -1,6 +1,6 @@
 package com.vm.controller;
 
-import com.vm.dto.CartProductRequest;
+import com.vm.dto.cartproduct.CartProductRequest;
 import com.vm.dto.ResultDto;
 import com.vm.services.CartProductService;
 import org.springframework.beans.factory.annotation.Autowired;

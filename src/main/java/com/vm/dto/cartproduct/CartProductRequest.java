@@ -1,4 +1,4 @@
-package com.vm.dto;
+package com.vm.dto.cartproduct;
 
 import lombok.Data;
 

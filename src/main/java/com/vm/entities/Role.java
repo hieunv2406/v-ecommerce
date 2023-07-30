@@ -1,7 +1,7 @@
 package com.vm.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.vm.dto.RolesDto;
+import com.vm.dto.role.RolesDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class Role extends BaseEntity {
     @Column(name = "roleId")
     private Long roleId;
 
-    @Column(name = "code")
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
 
     @Column(name = "name")

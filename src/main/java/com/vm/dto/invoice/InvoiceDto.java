@@ -1,4 +1,4 @@
-package com.vm.dto;
+package com.vm.dto.invoice;
 
 import com.vm.entities.InvoiceItem;
 import lombok.AllArgsConstructor;

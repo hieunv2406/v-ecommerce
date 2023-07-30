@@ -1,8 +1,8 @@
 package com.vm.authentication.services;
 
-import com.vm.dto.JwtUserDetails;
-import com.vm.dto.RolesDto;
-import com.vm.dto.UserDto;
+import com.vm.dto.jwt.JwtUserDetails;
+import com.vm.dto.role.RolesDto;
+import com.vm.dto.user.UserDto;
 import com.vm.entities.User;
 import com.vm.entities.UserRole;
 import com.vm.repository.UserRepository;

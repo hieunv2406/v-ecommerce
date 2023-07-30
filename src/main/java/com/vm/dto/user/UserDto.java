@@ -1,5 +1,6 @@
-package com.vm.dto;
+package com.vm.dto.user;
 
+import com.vm.dto.role.RolesDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

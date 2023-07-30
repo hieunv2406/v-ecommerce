@@ -1,7 +1,7 @@
 package com.vm.services;
 
 import com.vm.exceptions.ApiException;
-import com.vm.dto.CartProductRequest;
+import com.vm.dto.cartproduct.CartProductRequest;
 import com.vm.dto.ResultDto;
 import com.vm.dto.cart.CartDto;
 import com.vm.dto.product.ProductDto;

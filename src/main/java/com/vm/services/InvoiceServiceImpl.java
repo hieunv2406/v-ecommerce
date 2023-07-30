@@ -1,13 +1,12 @@
 package com.vm.services;
 
 import com.vm.dto.Datatable;
-import com.vm.dto.InvoiceRequest;
+import com.vm.dto.invoice.InvoiceRequest;
 import com.vm.dto.ResultDto;
 import com.vm.entities.Invoice;
 import com.vm.entities.InvoiceItem;
 import com.vm.entities.User;
-import com.vm.exceptions.InvoiceItemInValidException;
-import com.vm.exceptions.UserNotFoundException;
+import com.vm.exceptions.CustomException;
 import com.vm.repository.InvoiceCustomRepository;
 import com.vm.repository.InvoiceRepository;
 import com.vm.repository.UserRepository;
@@ -32,15 +31,15 @@ public class InvoiceServiceImpl implements InvoiceService {
     private InvoiceCustomRepository invoiceCustomRepository;
 
     @Override
-    public ResultDto createInvoice(InvoiceRequest invoiceRequest) throws Exception {
+    public ResultDto createInvoice(InvoiceRequest invoiceRequest) throws CustomException {
         Optional<User> user = userRepository.findByUsername(AuthUtil.getUsernameFromJwtToken());
         if (!user.isPresent()) {
             log.error("User not found");
-            throw new UserNotFoundException("User not found");
+            throw new CustomException("User not found");
         }
         if (!invoiceRequest.getInvoiceItems().isEmpty()) {
             log.error("Invoice item invalid");
-            throw new InvoiceItemInValidException("Invoice item invalid");
+            throw new CustomException("Invoice item invalid");
         }
         List<InvoiceItem> invoiceItems = invoiceRequest.getInvoiceItems().stream().map(
                 o -> {

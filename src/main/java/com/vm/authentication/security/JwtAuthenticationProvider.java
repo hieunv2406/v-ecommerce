@@ -1,6 +1,6 @@
 package com.vm.authentication.security;
 
-import com.vm.dto.JwtUserDetails;
+import com.vm.dto.jwt.JwtUserDetails;
 import com.vm.utils.Constants;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;

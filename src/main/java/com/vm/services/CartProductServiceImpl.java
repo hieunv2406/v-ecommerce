@@ -1,6 +1,6 @@
 package com.vm.services;
 
-import com.vm.dto.CartProductRequest;
+import com.vm.dto.cartproduct.CartProductRequest;
 import com.vm.dto.ResultDto;
 import com.vm.entities.CartProduct;
 import com.vm.repository.CartProductRepository;
